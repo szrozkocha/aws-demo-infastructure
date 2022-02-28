@@ -29,7 +29,7 @@ resource "aws_cloudfront_distribution" "main_cloudfront" {
   }
 
   # Route53 requires Alias/CNAME to be setup
-  aliases = [var.hosted_zone]
+  aliases = [var.hosted_zone, "www.${var.hosted_zone}"]
 
   default_cache_behavior {
     allowed_methods  = ["DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT"]
