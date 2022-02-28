@@ -22,7 +22,11 @@ variable "hosted_zone_id" {
 
 
 variable "frontend_bucket" {
-  description = "The AWS S3 bucket name."
+  description = "The AWS S3 frontend bucket name."
+}
+
+variable "backend_bucket" {
+  description = "The AWS S3 backend bucket name."
 }
 
 

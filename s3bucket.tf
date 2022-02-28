@@ -47,3 +47,8 @@ resource "aws_s3_bucket_website_configuration" "frontend_bucket_website_configur
     key = "index.html"
   }
 }
+
+resource "aws_s3_bucket" "backend_bucket" {
+  bucket = var.backend_bucket
+  force_destroy = true
+}
