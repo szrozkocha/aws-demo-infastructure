@@ -12,7 +12,7 @@ resource "aws_cloudfront_distribution" "main_cloudfront" {
   }
 
   viewer_certificate {
-    acm_certificate_arn = aws_acm_certificate_validation.domain_cert_validation.certificate_arn
+    acm_certificate_arn = aws_acm_certificate_validation.cloudfront_cert_validation.certificate_arn
     ssl_support_method = "sni-only"
   }
 
@@ -44,7 +44,7 @@ resource "aws_cloudfront_distribution" "main_cloudfront" {
       }
     }
 
-    viewer_protocol_policy = "allow-all"
+    viewer_protocol_policy = "redirect-to-https"
     min_ttl                = 0
     default_ttl            = var.cache_default_ttl
     max_ttl                = var.cache_max_ttl

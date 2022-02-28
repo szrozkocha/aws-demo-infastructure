@@ -27,4 +27,34 @@ resource "aws_elastic_beanstalk_environment" "beanstalk_app_env" {
     name = "IamInstanceProfile"
     value = "aws-elasticbeanstalk-ec2-role"
   }
+
+  setting {
+    namespace = "aws:elb:listener:80"
+    name      = "ListenerEnabled"
+    value     = "true"
+  }
+
+  setting {
+    namespace = "aws:elb:listener:443"
+    name      = "ListenerEnabled"
+    value     = "true"
+  }
+
+  setting {
+    namespace = "aws:elb:listener:443"
+    name      = "ListenerProtocol"
+    value     = "HTTPS"
+  }
+
+  setting {
+    namespace = "aws:elb:listener:443"
+    name      = "SSLCertificateId"
+    value     = aws_acm_certificate.beanstalk_cert.arn
+  }
+
+  setting {
+    namespace = "aws:elb:listener:443"
+    name      = "InstancePort"
+    value     = 5000
+  }
 }
